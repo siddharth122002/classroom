@@ -48,12 +48,15 @@ const TeacherDashboard = () => {
   const handleCreateStudent = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/createStudent", {
-        studentEmail,
-        studentPassword,
-        studentUsername,
-        studentAssignedTo,
-      });
+      const res = await axios.post(
+        "https://classroombackend.vercel.app/createStudent",
+        {
+          studentEmail,
+          studentPassword,
+          studentUsername,
+          studentAssignedTo,
+        }
+      );
       if (res.data.status == 404) {
         notify(res.data.msg);
       }
@@ -67,11 +70,14 @@ const TeacherDashboard = () => {
 
     const getStudents = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getClass", {
-          headers: {
-            email: localStorage.getItem("email"),
-          },
-        });
+        const res = await axios.get(
+          "https://classroombackend.vercel.app/getClass",
+          {
+            headers: {
+              email: localStorage.getItem("email"),
+            },
+          }
+        );
         setStudents(res.data.allStudent);
         // console.log(res.data.allStudent);
       } catch (e) {
@@ -82,11 +88,14 @@ const TeacherDashboard = () => {
 
     const getTT = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getTTteacher", {
-          headers: {
-            email: localStorage.getItem("email"),
-          },
-        });
+        const res = await axios.get(
+          "https://classroombackend.vercel.app/getTTteacher",
+          {
+            headers: {
+              email: localStorage.getItem("email"),
+            },
+          }
+        );
         if (res.data.TT !== null) {
           setSubs(res.data.TT.subs);
           setTimeline(res.data.TT.timeline);
@@ -108,7 +117,7 @@ const TeacherDashboard = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:3000/createTT",
+        "https://classroombackend.vercel.app/createTT",
         {
           timeline,
           subs,

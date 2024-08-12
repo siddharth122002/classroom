@@ -29,11 +29,14 @@ const Dashboard = () => {
   const handleCreateTeacher = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/createTeacher", {
-        teacherEmail,
-        teacherPassword,
-        teacherUsername,
-      });
+      const res = await axios.post(
+        "https://classroombackend.vercel.app/createTeacher",
+        {
+          teacherEmail,
+          teacherPassword,
+          teacherUsername,
+        }
+      );
       if (res.data.status == 404) {
         notify(res.data.msg);
       }
@@ -46,12 +49,15 @@ const Dashboard = () => {
   const handleCreateStudent = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/createStudent", {
-        studentEmail,
-        studentPassword,
-        studentUsername,
-        studentAssignedTo,
-      });
+      const res = await axios.post(
+        "https://classroombackend.vercel.app/createStudent",
+        {
+          studentEmail,
+          studentPassword,
+          studentUsername,
+          studentAssignedTo,
+        }
+      );
       if (res.data.status == 404) {
         notify(res.data.msg);
       }
@@ -64,11 +70,14 @@ const Dashboard = () => {
   const handleCreateClassroom = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/createClassroom", {
-        className,
-        assignTeacher,
-        tt,
-      });
+      const res = await axios.post(
+        "https://classroombackend.vercel.app/createClassroom",
+        {
+          className,
+          assignTeacher,
+          tt,
+        }
+      );
       if (res.data.status == 404) {
         notify(res.data.msg);
       }
@@ -80,7 +89,9 @@ const Dashboard = () => {
   useEffect(() => {
     const getTeachers = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getTeachers");
+        const res = await axios.get(
+          "https://classroombackend.vercel.app/getTeachers"
+        );
         setTeachers(res.data.allTeachers);
         // console.log(res.data.allTeachers)
       } catch (e) {
@@ -91,11 +102,14 @@ const Dashboard = () => {
 
     const getClasses = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getClasses", {
-          headers: {
-            email: localStorage.getItem("email"),
-          },
-        });
+        const res = await axios.get(
+          "https://classroombackend.vercel.app/getClasses",
+          {
+            headers: {
+              email: localStorage.getItem("email"),
+            },
+          }
+        );
         setClassrooms(res.data.allClass);
         // console.log(res.data.allClass)
       } catch (e) {

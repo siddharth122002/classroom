@@ -33,11 +33,14 @@ const StudentDashboard = () => {
   useEffect(() => {
     const getTT = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getTT", {
-          headers: {
-            email: localStorage.getItem("email"),
-          },
-        });
+        const res = await axios.get(
+          "https://classroombackend.vercel.app/getTT",
+          {
+            headers: {
+              email: localStorage.getItem("email"),
+            },
+          }
+        );
 
         setSubs(res.data.TT.subs);
         setTimeline(res.data.TT.timeline);
@@ -49,11 +52,14 @@ const StudentDashboard = () => {
 
     const getStudents = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getClassstudent", {
-          headers: {
-            email: localStorage.getItem("email"),
-          },
-        });
+        const res = await axios.get(
+          "https://classroombackend.vercel.app/getClassstudent",
+          {
+            headers: {
+              email: localStorage.getItem("email"),
+            },
+          }
+        );
         setStudents(res.data.allStudent);
         // console.log(res.data.allStudent);
       } catch (e) {
